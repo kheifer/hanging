@@ -4,10 +4,10 @@ import java.util.Random;
 
 public class Hangman {
     private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif"};
-    private String wordChoice = "apertif";
+    private String wordChoice = ("apertif");
+    private String dashedWord;
+    private String remainingWord = wordChoice;
     private char[] usedLetters;
-
-
 
 
     public String[] getCorrectAnswer() {
@@ -22,11 +22,8 @@ public class Hangman {
         Random randomWord = new Random();
         int randomIndex = randomWord.nextInt(wordBank.length);
         wordChoice = wordBank[randomIndex];
-        return wordChoice;
-    }
-
-    private String displayedWord(){
-        return wordChoice.replaceAll("[a-zA-Z]", "-");
+        dashedWord = wordChoice.replaceAll("[a-zA-Z]", "-");
+        return dashedWord;
     }
 
     public boolean solvedGame(String input){
@@ -46,9 +43,16 @@ public class Hangman {
         String guessResponse;
         if (wordChoice.contains(input)) {
             guessResponse = "Letter is present!";
+                remainingWord = wordChoice.replace(input, "-");
+            for (int i = 0; i < remainingWord.length() ; i++) {
+                remainingWord.indexOf("-");
+            }
+
+
         } else{
             guessResponse = "Letter is not present. Try again";
         }
         return guessResponse;
     }
 }
+//Pick a word, Display that word as dashes, Search word for input, replace dashed letter with input, reapeat until solved
