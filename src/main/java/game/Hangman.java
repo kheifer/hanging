@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Hangman {
-    private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif", "java", "tutorial", "jeep","onomatopoeia"};
+    private String[] wordBank = {"breakfast", "banh mi", "cart", "apertif", "java", "tutorial", "jeep","onomatopoeia"};
     private String wordChoice = ("apertif");
     private char[] dashedWord;
     private String remainingWord = wordChoice;

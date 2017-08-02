@@ -20,15 +20,21 @@ public class App {
             String usedletters = bufferedReader.readLine().toLowerCase();
             hangman.searchLetter(usedletters);
             System.out.println(hangman.getDashedWord());
+            int guess= 1;
+
             while (gameRunning){
               if(hangman.solvedGame(hangman.getDashedWord())){
-                  System.out.println("Congratulations, you've solved it. The word is "+ hangman.getDashedWord());
+                  System.out.println("Congratulations, you've solved it. The word is "+ hangman.getDashedWord()+"!");
+                  gameRunning = false;
+              }else if (guess == 10){
+                  System.out.println("Your guessing skills are hot garbage!");
                   gameRunning = false;
               }else{
                   System.out.println("Please enter another letter.");
                   String usedletters2 = bufferedReader.readLine().toLowerCase();
                   hangman.searchLetter(usedletters2);
                   System.out.println(hangman.getDashedWord());
+                  guess ++;
               }
             }
         }
