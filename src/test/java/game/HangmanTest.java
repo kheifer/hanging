@@ -1,8 +1,23 @@
+package game;
+
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
-/**
- * Created by Guest on 8/2/17.
- */
-public class hangmanTest {
-
+public class HangmanTest{
+    @Test
+    public void newGame_instantiatesCorrectly_1() {
+        Hangman testHangman = new Hangman();
+        assertEquals(true, testHangman instanceof Hangman);
+    }
+    @Test
+    public void newGame_passesLetter_2() {
+        Hangman testHangman = new Hangman();
+        assertEquals("Letter is present!", testHangman.searchLetter("a"));
+    }
+    @Test
+    public void newGame_solvedWord_3() {
+        Hangman testHangman = new Hangman();
+        assertEquals(true, testHangman.solvedGame("apertif"));
+    }
 }
