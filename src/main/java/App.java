@@ -18,23 +18,24 @@ public class App {
             System.out.println("Select difficulty: easy, medium, hard");
             int tries = 0;
             String turns = bufferedReader.readLine().toLowerCase();
-            if(turns == "hard"){
-               return tries += 5;
-            }else if(turns == "medium"){
-                tries += 10;
-            }else if(turns == "easy"){
-                tries += 15;
-            }
             System.out.println(hangman.getDashedWord());
-            System.out.println("How many Guesses Left: "+(tries));
             System.out.println("Let's play Hangman, please enter a letter.");
             String usedletters = bufferedReader.readLine().toLowerCase();
             hangman.searchLetter(usedletters);
             System.out.println(hangman.getDashedWord());
-
+            if(turns.equals("hard")){
+                tries = 5;
+            }else if(turns.equals("medium")){
+                tries = 10;
+            }else if(turns.equals("easy")){
+                tries = 15;
+            }
             int guess= 1;
+            System.out.println("How many Guesses Left: "+(tries-guess));
+
 
             while (gameRunning){
+
                 if(hangman.solvedGame(hangman.getDashedWord())){
                   System.out.println("Congratulations, you've solved it. The word is "+ hangman.getDashedWord()+"!");
                   gameRunning = false;
@@ -46,7 +47,9 @@ public class App {
                   String usedletters2 = bufferedReader.readLine().toLowerCase();
                   hangman.searchLetter(usedletters2);
                   System.out.println(hangman.getDashedWord());
-                  guess ++;
+                    guess ++;
+                    System.out.println("How many Guesses Left: "+(tries-guess));
+
               }
             }
         }
