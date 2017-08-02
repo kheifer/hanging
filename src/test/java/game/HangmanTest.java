@@ -1,7 +1,7 @@
 package game;
 
 import org.junit.Test;
-
+import java.util.Arrays;
 import static org.junit.Assert.*;
 
 public class HangmanTest{
@@ -16,8 +16,19 @@ public class HangmanTest{
         assertEquals("Letter is present!", testHangman.searchLetter("a"));
     }
     @Test
-    public void newGame_solvedWord_3() {
+    public void newGame_createRandomWord_3() {
+        boolean expectedOutput = false;
+        Hangman testHangman = new Hangman();
+        String generatedWord = testHangman.pickFirstWord();
+        if(Arrays.asList(testHangman.getWordBank()).contains(generatedWord)){
+            expectedOutput = true;
+        }
+        assertTrue(expectedOutput);
+    }
+    @Test
+    public void newGame_checkWinCondition_4() {
         Hangman testHangman = new Hangman();
         assertEquals(true, testHangman.solvedGame("apertif"));
     }
+
 }

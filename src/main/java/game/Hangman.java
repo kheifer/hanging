@@ -3,14 +3,14 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Hangman {
-    private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif"};
+    private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif", "java", "tutorial", "jeep","onomatopoeia"};
     private String wordChoice = ("apertif");
-    private String dashedWord;
+    private char[] dashedWord;
     private String remainingWord = wordChoice;
     private char[] usedLetters;
 
 
-    public String[] getCorrectAnswer() {
+    public String[] getWordBank() {
         return wordBank;
     }
 
@@ -18,11 +18,16 @@ public class Hangman {
         return usedLetters;
     }
 
-    private String pickFirstWord(){
+    public String pickFirstWord(){
         Random randomWord = new Random();
         int randomIndex = randomWord.nextInt(wordBank.length);
         wordChoice = wordBank[randomIndex];
-        dashedWord = wordChoice.replaceAll("[a-zA-Z]", "-");
+        System.out.println(wordChoice);
+        return wordChoice;
+    }
+
+    public char[] getDashed(){
+        dashedWord = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
         return dashedWord;
     }
 
@@ -45,9 +50,11 @@ public class Hangman {
             guessResponse = "Letter is present!";
                 remainingWord = wordChoice.replace(input, "-");
             for (int i = 0; i < remainingWord.length() ; i++) {
-                remainingWord.indexOf("-");
+               char c = remainingWord.charAt(i);
+               if(c =='-'){
+                   dashedWord[i] = input.charAt(0);
+                 }
             }
-
 
         } else{
             guessResponse = "Letter is not present. Try again";
