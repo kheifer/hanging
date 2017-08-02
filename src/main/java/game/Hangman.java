@@ -5,7 +5,7 @@ import java.util.Random;
 public class Hangman {
     private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif", "java", "tutorial", "jeep","onomatopoeia"};
     private String wordChoice = ("apertif");
-    private char[] dashedWord  = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
+    private char[] dashedWord;
     private String remainingWord = wordChoice;
     private char[] usedLetters;
 
@@ -16,7 +16,10 @@ public class Hangman {
     public char[] getWrongLetters() {
         return usedLetters;
     }
-
+    public String getDashedWord() {
+        String output =new String(dashedWord);
+        return output;
+    }
     public String pickFirstWord(){
         Random randomWord = new Random();
         int randomIndex = randomWord.nextInt(wordBank.length);
@@ -24,10 +27,10 @@ public class Hangman {
         return wordChoice;
     }
 
-//    public char[] getDashed(){
-//        dashedWord = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
-//        return dashedWord;
-//    }
+    public char[] getDashed(){
+        dashedWord = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
+        return dashedWord;
+    }
 
     public boolean solvedGame(String input){
             boolean checkStatus = false;
@@ -42,7 +45,7 @@ public class Hangman {
         return checkStatus;
     }
 
-    public String searchLetter(String input) {
+    public char[] searchLetter(String input) {
         String guessResponse;
         if (wordChoice.contains(input)) {
             guessResponse = "Letter is present!";
@@ -57,9 +60,7 @@ public class Hangman {
         } else{
             guessResponse = "Letter is not present. Try again";
         }
-        String output =new String(dashedWord);
-        System.out.println(output);
-        return guessResponse;
+        return dashedWord;
     }
 }
 //Pick a word, Display that word as dashes, Search word for input, replace dashed letter with input, reapeat until solved
