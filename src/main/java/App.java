@@ -35,21 +35,26 @@ public class App {
 
 
             while (gameRunning){
+                System.out.println("Please enter another letter.");
+                String usedletters2 = bufferedReader.readLine().toLowerCase();
+                hangman.searchLetter(usedletters2);
+
 
                 if(hangman.solvedGame(hangman.getDashedWord())){
-                  System.out.println("Congratulations, you've solved it. The word is "+ hangman.getDashedWord()+"!");
+                    System.out.println(hangman.getDashedWord());
+                    System.out.println("Congratulations, you've solved it. The word is "+ hangman.getDashedWord()+"!");
                   gameRunning = false;
               }else if (guess == tries){
                   System.out.println("Your guessing skills are hot garbage!");
                   gameRunning = false;
-              }else{
-                  System.out.println("Please enter another letter.");
-                  String usedletters2 = bufferedReader.readLine().toLowerCase();
-                  hangman.searchLetter(usedletters2);
-                  System.out.println(hangman.getDashedWord());
+              }else if (hangman.solvedGame(usedletters2)){
+                    System.out.println(usedletters2);
+                    System.out.println("Congratulations, you've solved it. The word is "+ usedletters2+"!");
+                    gameRunning = false;
+                }else{
+                    System.out.println(hangman.getDashedWord());
                     guess ++;
                     System.out.println("How many Guesses Left: "+(tries-guess));
-
               }
             }
         }
