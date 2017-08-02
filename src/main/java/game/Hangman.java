@@ -5,10 +5,9 @@ import java.util.Random;
 public class Hangman {
     private String[] wordBank = {"breakfast", "banh Mi", "cart", "apertif", "java", "tutorial", "jeep","onomatopoeia"};
     private String wordChoice = ("apertif");
-    private char[] dashedWord;
+    private char[] dashedWord  = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
     private String remainingWord = wordChoice;
     private char[] usedLetters;
-
 
     public String[] getWordBank() {
         return wordBank;
@@ -22,14 +21,13 @@ public class Hangman {
         Random randomWord = new Random();
         int randomIndex = randomWord.nextInt(wordBank.length);
         wordChoice = wordBank[randomIndex];
-        System.out.println(wordChoice);
         return wordChoice;
     }
 
-    public char[] getDashed(){
-        dashedWord = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
-        return dashedWord;
-    }
+//    public char[] getDashed(){
+//        dashedWord = (wordChoice.replaceAll("[a-zA-Z]", "-")).toCharArray();
+//        return dashedWord;
+//    }
 
     public boolean solvedGame(String input){
             boolean checkStatus = false;
@@ -59,6 +57,8 @@ public class Hangman {
         } else{
             guessResponse = "Letter is not present. Try again";
         }
+        String output =new String(dashedWord);
+        System.out.println(output);
         return guessResponse;
     }
 }
